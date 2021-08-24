@@ -17,7 +17,7 @@ ul.images-list{
 	text-align: center;
 }
 ul.images-list li > a > img{
-	width: 3em;
+	width: 4em;
 }
 .image-table td{
 	padding: 1rem;
