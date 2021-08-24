@@ -3,65 +3,65 @@
   <!-- Personal details + Google map -->
     <div ng-controller="contactCtrl">
     
-      <div class="centered">
+      <div class="centered" style="margin-bottom: 17em;">
         <table class="contact-table centered image-table-small contacts-wrapper ">
           <tr ng-repeat="contact in contacts">
             <td>
               <img src="{{contact.imgUrl}}" title="{{contact.imgTitle}}" alt="{{contact.imgTitle}}"/>
               <span title="{{contact.imgTitle}}">&nbsp{{contact.Title}}</span>
             </td>
-            <td>
+            <td style="width: 11em;">
               <div ng-switch on="contact.Name">
                 <div ng-switch-when="address">
-                  <span>
+                  <span class="highlight-text">
                     {{contact.Data}}
                   </span>
                 </div>
                 <div ng-switch-when="email">
                   <span>
-                    <a href="mailto:{{contact.Data}}">
+                    <a href="mailto:{{contact.Data}}" class="highlight-text">
                       {{contact.Data}}
                     </a>
                   </span>
                 </div>
                 <div ng-switch-when="phonenumber">
                   <span>
-                    <a href="tel:{{contact.Data}}">
+                    <a href="tel:{{contact.Data}}" class="highlight-text">
                       {{contact.Data}}
                     </a>
                   </span>
                 </div>
                 <div ng-switch-when="skype">
                   <span>
-                    <a href="skype:{{contact.Data}}?call">
+                    <a href="skype:{{contact.Data}}?call" class="highlight-text">
                       {{contact.Data}}
                     </a>
                   </span>
                 </div>
 				<div ng-switch-when="telegram">
                   <span>
-                    <a href="https://t.me/{{contact.Data}}"  target="_blank">
+                    <a href="https://t.me/{{contact.Data}}"  class="highlight-text" target="_blank">
                       {{contact.Data}}
                     </a>
                   </span>
                 </div>
 				<div ng-switch-when="github">
                   <span>
-                    <a href="https://github.com/{{contact.Data}}"  target="_blank">
+                    <a href="https://github.com/{{contact.Data}}"  class="highlight-text" target="_blank">
                       {{contact.Data}}
                     </a>
                   </span>
                 </div>
 				<div ng-switch-when="donation">
                   <span>
-                    <a href="https://donatello.to/u/{{contact.Data}}"  target="_blank">
+                    <a href="https://donatello.to/u/{{contact.Data}}"  class="highlight-text" target="_blank">
                       {{contact.Data}}
                     </a>
                   </span>
                 </div>
                 <div ng-switch-default>
                   <span>
-                    <a href="{{contact.Data}}"  target="_blank">
+                    <a href="{{contact.Data}}"  class="highlight-text" target="_blank">
                       {{contact.Data}}
                     </a>
                   </span>
@@ -70,8 +70,73 @@
             </td>
           </tr>
         <table>
+		<div ng-show="showSendingForm">
+			<h2 style="text-align: center;">Type message<h2/>
+			<div >
+				<form name="messageForm">
+					<textarea ng-model="message" name="message" cols="40" rows="3" class="message-textarea"></textarea>
+					<br/>
+					<br/>
+					<button type="submit" ng-click="send()" class="send-button">
+					Send
+					</button>
+				</form>
+			</div>
+		</div>
+		<div class="sending-animation-div" ng-show="showSending">
+			<img src="/content/image/animation/sending.gif" class="sending-animation-img" />
+		</div>
       </div>
+	</div>
       
           
-  
+  <style type="text/css">
+	.message-textarea{
+		background: transparent; 
+		color: rgb(255,215,0); 
+		width: 91.2%; 
+		height: 140px; 
+		border: 2px solid blue; 
+		padding: 10px;
+		font-size: 1.175vh;
+	}
+	
+	.send-button {
+		background: transparent; 
+		color: #32CD32; 
+		border: 2px solid #32CD32; 
+		display: block;
+		margin-left: auto;
+		margin-right: auto; 
+		font-size: 15px;
+		cursor: url('/content/image/cursor/hand_cursor.cur'), auto;
+	}
+	
+	.send-button:active {
+		background-color: black;
+		font-size: 12px;
+		background: transparent;
+	}
+	
+	.sending-animation-div {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: black;
+		height: 100vh;
+		width: 100vw;
+	}
+	
+	.sending-animation-img {
+		position: fixed;
+		top: calc(50% - 169px);
+		left: calc(50% - 300px);
+	}
+	
+	.highlight-text:hover
+	{
+		font-weight: bolder;
+		text-decoration: underline;
+	}
+  </style>
   

@@ -1,3 +1,6 @@
+body{
+	font-size: 1.175vh;
+}
 #sitename-content{
 	opacity: 1;
 	padding: 0.5em;
@@ -18,8 +21,7 @@ ul.images-list{
 	text-align: center;
 }
 ul.images-list li > a > img{
-	width: 10%;
-	height: 10%;
+	width: 14em;
 }
 .image-table td{
 	padding: 0.75rem 1rem 0.75rem 1rem;
@@ -34,8 +36,7 @@ ul.images-list li > a > img{
 .image-table-small td > img{
 	padding: 0;
 	margin: 0;
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 2vh;
 	vertical-align:middle;
 }
 .image-table-small span{

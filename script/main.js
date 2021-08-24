@@ -42,6 +42,7 @@ try{
 }
 
 app.config(function($routeProvider, $compileProvider){
+	
 	mainPages.forEach(function(page){
 		$routeProvider.when(page.Path, {
 			templateUrl : __mainPagesAbsolutePath + page.RelativeUrl,
@@ -129,10 +130,52 @@ app.controller("contactCtrl", function ($scope, $http) {
 			var data = response.data;
 			$scope.contacts = data.Contacts;
 			$scope.annotations =  data.Annotations;
+			$scope.email = 'leonid@email.ua';
+			var emailObj = data.Contacts.find(element => element.Name == 'email');
+			if (emailObj != null && typeof emailObj != 'undefined'){
+				$scope.email = emailObj.Data;
+			}
+			
 		}
 	).catch(function onError(response) {
 		console.log(response);
 	});
+	$scope.showSending = false;
+	$scope.showSendingForm = false;
+	$http.get('https://sitenamewebapi.000webhostapp.com').then(
+		function onSuccess(response){
+			$scope.showSendingForm = true;
+			
+		}
+	).catch(function onError(response) {
+		console.log(response);
+	});
+	$scope.message = '';
+	$scope.send = function () {
+		if($scope.message != ''){
+			$scope.showSending = true;
+			var message = {
+				To: $scope.email,
+				Text: $scope.message
+			};
+			
+			$http({
+				method: 'POST',
+				url: 'https://sitenamewebapi.000webhostapp.com',
+				data: message,
+				headers: {
+					'Content-Type': 'text/plain;charset=UTF-8'
+			}})
+            .then(function (response) {
+                if (response.status == 200) $scope.message = '';
+				$scope.showSending = false;
+            }, function (error) {
+				$scope.showSending = false;
+                alert('Send message error. Try again.');
+            });
+			
+		}
+	};
 });
 /*End Controllers----------------------------------------------------------------------------*/
 /*Componets----------------------------------------------------------------------------------*/
@@ -169,23 +212,59 @@ function ConstructPath(controlerName){
 	}
 }
 
-
-
-
-
-/*Application------------------------------------------------------------------------------------*/
+document.addEventListener('DOMContentLoaded', function(){ 
+	var date =  new Date();
+	var year = date.getFullYear();
+	document.getElementById("current-year").innerHTML = year;
+	
+});
+function esc(element){
+	var items = document.getElementsByClassName('animate-show-hide-top');
+	for (i = 0; i < items.length; i++) { 
+	items[i].classList.remove("ng-enter-top");
+	items[i].classList.remove("ng-enter-top-active");
+	items[i].classList.add("ng-leave-top");
+	items[i].classList.add("ng-leave-top-active");
+		//item.setAttribute("style", "opacity: 0;transition: all linear 0.5s;transform: translateY(-100%);");
+	}
+	var items = document.getElementsByClassName('animate-show-hide-bottom');
+	for (i = 0; i < items.length; i++) { 
+	items[i].classList.remove("ng-enter-bottom");
+	items[i].classList.remove("ng-enter-bottom-active");
+	items[i].classList.add("ng-leave-bottom");
+	items[i].classList.add("ng-leave-bottom-active");
+		//item.setAttribute("style", "opacity: 0;transition: all linear 0.5s;transform: translateY(100%);");
+	}
+	element.src = element.src.replace("icon_Esc.png","icon_Enter.png");
+	element.title = "Enter";
+	element.alt = "Enter";
+	element.onclick = function(){ enter(this)};
+}
+function enter(element){
+	var items = document.getElementsByClassName('animate-show-hide-top');
+	for (i = 0; i < items.length; i++) { 
+	items[i].classList.remove("ng-leave-top");
+	items[i].classList.remove("ng-leave-top-active");
+	items[i].classList.add("ng-enter-top");
+	items[i].classList.add("ng-enter-top-active");
 	
 
-	/*
-	function AnnotationController($scope, $element, $attrs) {
-	var ctrl = this;
+		//item.setAttribute("style", "opacity: 1;transition: all linear 0.5s;transform: translateY(0);");
+	}
+	var items = document.getElementsByClassName('animate-show-hide-bottom');
+	for (i = 0; i < items.length; i++) { 
+	items[i].classList.remove("ng-leave-bottom");
+	items[i].classList.remove("ng-leave-bottom-active");
+	items[i].classList.add("ng-enter-bottom");
+	items[i].classList.add("ng-enter-bottom-active");
 
-	// This would be loaded by $http etc.
-	ctrl.list = $scope.annotations;
-
-	}*/
-
-	/*EndComponents-----------------------------------------------------------------------------*/
+		//item.setAttribute("style", "opacity: 1;transition: all linear 0.5s;transform: translateY(0);");
+	}
+	element.src = element.src.replace("icon_Enter.png","icon_Esc.png");
+	element.title = "Esc";
+	element.alt = "Esc";
+	element.onclick = function(){ esc(this)};
+}
 
 
 

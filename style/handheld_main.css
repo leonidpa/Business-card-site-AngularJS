@@ -17,8 +17,7 @@ ul.images-list{
 	text-align: center;
 }
 ul.images-list li > a > img{
-	width: 15%;
-	height: 15%;
+	width: 3em;
 }
 .image-table td{
 	padding: 1rem;
@@ -28,7 +27,6 @@ ul.images-list li > a > img{
 	margin: 0;
 	width: fit-content;
 	height: fit-content;
-	font-size: 3.5vw;
 	vertical-align: middle;
 }
 .image-table-small td > img{

@@ -13,8 +13,8 @@
 		
 		<link rel="short icon" href="favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="style/sitename_main.css"/>
-		<link media="only screen  and (min-width : 480px)" rel="stylesheet" type="text/css" href="style/screen_main.css"/>
-		<link media="only screen and (min-device-width : 320px) and (max-device-width : 480px)" rel="stylesheet" type="text/css" href="style/handheld_main.css"/>
+		<link media="only screen  and (min-width : 1365px)" rel="stylesheet" type="text/css" href="style/screen_main.css"/>
+		<link media="only screen and (max-device-width : 1365px)" rel="stylesheet" type="text/css" href="style/handheld_main.css"/>
 		
 		<!-- angular -->
 		<script type="text/javascript" src="script/jquery-1.10.2.min.js"></script>
@@ -34,20 +34,19 @@
 		<div id="sitename"  ng-controller="navigationCtrl" >
 			
 			<!-- Navigation -->
-			<player source="trackbase" class="player right"></player>
 			<div id="sitename-navigation-wrapper" class="animate-show-hide-top">
 				<ul id="sitename-navigation-path" class="sitename-navigation-path">
 							<li ng-repeat="pathItem in navigationPath">
-								<a href="#!{{pathItem.Name}}">{{pathItem.Title}}</a>
+								<a href="#!/{{pathItem.Name}}">{{pathItem.Title}}</a>
 								&nbsp;/&nbsp;
 							</li>
 							<li style="float:right;">
-								<span>&copy; Leonid Pasichniy, 2017 &nbsp;</span>
+								<span>&copy; Leonid Pasichnyi, 2017-<span id="current-year"></span> &nbsp;</span>
 							</li>
 				</ul>
 				<div id="sitename-navigation" class="centered">
 					<!-- Name box -->
-					<div id="sitename-navigation-name-box" class="navigation-menu-li">
+					<div id="sitename-navigation-name-box" class="navigation-menu-li" style="display: none !important;">
 						<a ng-model="homePage" href="#!{{homePage.Name}}">{{homePage.Title | uppercase}}</a>
 					</div>
 					<!-- /Name box -->
@@ -56,7 +55,7 @@
 						<!-- <a href="#!/main" id="sitename-navigation-close-button"></a> -->
 						<ul>
 							<li ng-repeat="page in mainPages" class="navigation-menu-li">
-								<a href="#!{{page.Name}}">{{page.Title | uppercase}}</a>
+								<a href="#!/{{page.Name}}">{{page.Title | uppercase}}</a>
 							</li>
 						</ul>
 						<!-- /Menu -->
@@ -68,29 +67,6 @@
 								&nbsp;
 									
 							</li>
-							<!-- 
-							<li ng-repeat="link in links" class="">
-								<a href="">
-									<img 
-										width="16vw" 
-										height="16vw" 
-										style="vertical-align: bottom;"
-										
-									/>
-								</a>
-								
-								<a href="{{link.Href}}">
-									<img 
-										width="16vw" 
-										height="16vw" 
-										style="vertical-align: bottom;"
-										src="{{link.imgSrc}}" 
-										title="{{link.imgTitle}}" 
-										alt="{{link.imgTitle}}"
-									/>
-								</a>
-								  
-							</li>-->
 							
 							<li style="float:right;">
 								<select>
@@ -107,81 +83,18 @@
 				<main ng-view id="sitename-content" class="animate-show-hide-bottom"></main>
 			</div>
 			<!-- /Content -->
-			
+			<player source="trackbase" class="player right"></player>
+			<img 
+				id="playerImgEsc"
+				src="/content/image/icon/icon_row/icon_Esc.png" 
+				title="Esc" 
+				alt="Esc"
+				onclick="esc(this);"
+			/>
 		</div>
 		
-		<img 
-			id="playerImgEsc"
-			src="/content/image/icon/icon_row/icon_Esc.png" 
-			title="Esc" 
-			alt="Esc"
-			onclick="esc(this);"
-		/>
-
-
-
-		<script type="text/javascript">
-			function esc(element){
-				var items = document.getElementsByClassName('animate-show-hide-top');
-				for (i = 0; i < items.length; i++) { 
-				items[i].classList.remove("ng-enter-top");
-				items[i].classList.remove("ng-enter-top-active");
-				items[i].classList.add("ng-leave-top");
-				items[i].classList.add("ng-leave-top-active");
-					//item.setAttribute("style", "opacity: 0;transition: all linear 0.5s;transform: translateY(-100%);");
-				}
-				var items = document.getElementsByClassName('animate-show-hide-bottom');
-				for (i = 0; i < items.length; i++) { 
-				items[i].classList.remove("ng-enter-bottom");
-				items[i].classList.remove("ng-enter-bottom-active");
-				items[i].classList.add("ng-leave-bottom");
-				items[i].classList.add("ng-leave-bottom-active");
-					//item.setAttribute("style", "opacity: 0;transition: all linear 0.5s;transform: translateY(100%);");
-				}
-				element.src = element.src.replace("icon_Esc.png","icon_Enter.png");
-				element.title = "Enter";
-				element.alt = "Enter";
-				element.onclick = function(){ enter(this)};
-			}
-			function enter(element){
-				var items = document.getElementsByClassName('animate-show-hide-top');
-				for (i = 0; i < items.length; i++) { 
-				items[i].classList.remove("ng-leave-top");
-				items[i].classList.remove("ng-leave-top-active");
-				items[i].classList.add("ng-enter-top");
-				items[i].classList.add("ng-enter-top-active");
-				
 		
-					//item.setAttribute("style", "opacity: 1;transition: all linear 0.5s;transform: translateY(0);");
-				}
-				var items = document.getElementsByClassName('animate-show-hide-bottom');
-				for (i = 0; i < items.length; i++) { 
-				items[i].classList.remove("ng-leave-bottom");
-				items[i].classList.remove("ng-leave-bottom-active");
-				items[i].classList.add("ng-enter-bottom");
-				items[i].classList.add("ng-enter-bottom-active");
-		
-					//item.setAttribute("style", "opacity: 1;transition: all linear 0.5s;transform: translateY(0);");
-				}
-				element.src = element.src.replace("icon_Enter.png","icon_Esc.png");
-				element.title = "Esc";
-				element.alt = "Esc";
-				element.onclick = function(){ esc(this)};
-			}
-		</script>
-		
-		<style type="text/css">
-			#playerImgEsc
-			{
-				position: fixed;
-				bottom: 2%;
-				left: 3%;
-				z-index:99;
-				width:4vh;
-				height:4vh;
-				cursor: url('/content/image/cursor/hand_cursor.cur'), auto;
-			}
-		</style>
+
 	</body>
 </html>
 

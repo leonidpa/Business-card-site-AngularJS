@@ -20,17 +20,17 @@ html{
 	/*min-height: 100%;
 	*/
 }
-html::-webkit-scrollbar-track,#sitename-content::-webkit-scrollbar-track{
+html::-webkit-scrollbar-track,#sitename-content::-webkit-scrollbar-track,textarea::-webkit-scrollbar-track{
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
 	background-color: #000000;
 }
-html::-webkit-scrollbar,#sitename-content::-webkit-scrollbar{
+html::-webkit-scrollbar,#sitename-content::-webkit-scrollbar,textarea::-webkit-scrollbar{
 	width: 6px;
 	height: 6px;
 	background-color: #000000;
 }
-html::-webkit-scrollbar-thumb,#sitename-content::-webkit-scrollbar-thumb{
+html::-webkit-scrollbar-thumb,#sitename-content::-webkit-scrollbar-thumb,textarea::-webkit-scrollbar-thumb{
 	border-radius: 10px;
 	background-color: #F5F5F5;
 }
@@ -100,8 +100,9 @@ a, .navigation-menu-li a{
 }
 .navigation-menu-li :hover/*,.navigation-menu-li :active,.navigation-menu-li :focus*/
 {
-	background-color:white;
-	color: black;
+	/*background-color:white;
+	color: black;*/
+	font-weight: bolder;
 	
 }
 .navigation-menu-li a,.navigation-menu-li span{
@@ -204,7 +205,6 @@ main.ng-enter.ng-enter-active {
 }
 
 .contacts-wrapper{
-	width: 210pt;
 	background-color: rgba(19,9,2,0.75);
 	margin-top: 7vh !important;
 	margin-bottom: 7vh !important;
@@ -214,4 +214,15 @@ main.ng-enter.ng-enter-active {
     border-image-width: 23pt;
     border-image-slice: 34;
     border-image-outset: 20pt 17pt 20pt 17pt
+}
+
+#playerImgEsc
+{
+	position: fixed;
+	bottom: 2%;
+	left: 3%;
+	z-index:99;
+	width:4vh;
+	height:4vh;
+	cursor: url('/content/image/cursor/hand_cursor.cur'), auto;
 }

@@ -2,7 +2,7 @@
 	"Annotations" : 
 	[
 		"I just like IT development, it is my true passion.", 
-		"To me development is an art."
+		"To me development is a science."
 	],
 	
 	"TextContent" : 
@@ -20,7 +20,7 @@
 			"Name":"xaml", 
 			"Title":"XAML", 
 			"ImageRelativePath": "xaml.png",
-			"Url":"https://docs.microsoft.com/ru-ru/dotnet/desktop-wpf/fundamentals/xaml"
+			"Url":"https://docs.microsoft.com/en-us/dotnet/desktop-wpf/fundamentals/xaml"
 		},
 		{
 			"Name":"dotnet", 
@@ -65,6 +65,18 @@
 			"Url":"http://json.org/"
 		},
 		{
+			"Name":"ext-js", 
+			"Title":"Ext JS", 
+			"ImageRelativePath": "sencha_extjs.png",
+			"Url":"https://www.sencha.com/products/extjs/"
+		},
+		{
+			"Name":"vue-js", 
+			"Title":"VueJS", 
+			"ImageRelativePath": "vue-js.png",
+			"Url":"https://vuejs.org/"
+		},
+		{
 			"Name":"angular", 
 			"Title":"AngularJS", 
 			"ImageRelativePath": "angular.png",
@@ -83,6 +95,12 @@
 			"Url":"https://en.wikipedia.org/wiki/Ajax_(programming)"
 		},
 		{
+			"Name":"orchard", 
+			"Title":"Orchard CMS (Core)", 
+			"ImageRelativePath": "orchard.png",
+			"Url":"https://orchardcore.net/"
+		},
+		{
 			"Name":"iis", 
 			"Title":"MS IIS", 
 			"ImageRelativePath": "iis_w.png",
@@ -99,6 +117,12 @@
 			"Title":"MS Sql Server", 
 			"ImageRelativePath": "mssqls_w.png",
 			"Url":"https://www.microsoft.com/en-us/sql-server/sql-server-2017"
+		},
+		{
+			"Name":"oracledatabase", 
+			"Title":"Oracle Database", 
+			"ImageRelativePath": "oracle_database.png",
+			"Url":"https://www.oracle.com/database/"
 		},
 		{
 			"Name":"sqlite", 
